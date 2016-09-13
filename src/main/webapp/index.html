@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <a href="inschrijven.html" >sign up </a>
+        <h1>Onze Producten</h1>
+
+        <ul id="artikelList"></ul>
+        <button id="btnAdd">Nieuw Artikel</button>
+
+        <form id ="artikelForm">
+
+
+            <div class="mainArea">
+
+                <label>Id:</label>
+                <input id="artikelId" name="id" type="text" disabled />
+
+                <label>Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label>Prijs:</label>
+                <input type="text" id="prijs" name="prijs" required/>
+
+
+                <button id="btnSave">Save</button>
+                <button id="btnDelete">Delete</button>
+
+            </div>
+
+            <div class="rightArea">
+                <img id="pic" src= "" alt = "pic niet gevonden" height="300"/>
+                <label>Notes:</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+        </form>     
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
