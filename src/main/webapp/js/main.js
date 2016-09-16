@@ -3,27 +3,10 @@ const rootURL = "http://localhost:8080/ws4/webresources/artikel";
 //
 let currentArtikel;
 
-// Retrieve wine list when application starts 
+
 findAll();
 $('#pic').attr('src', 'pics/' + 'tinker1.jpeg');
-//// Nothing to delete in initial application state
-//$('#btnDelete').hide();
-//
-//// Register listeners
-//$('#btnSearch').click(function() {
-//	search($('#searchKey').val());
-//	return false;
-//});
-////
-//// Trigger search when pressing 'Return' on search key input field
-//$('#searchKey').keypress(function(e){
-//	if(e.which == 13) {
-//		search($('#searchKey').val());
-//		e.preventDefault();
-//		return false;
-//    }
-//});
-//
+
 $('#btnAdd').click(function() {
 	newArtikel();
 	return false;
@@ -46,22 +29,9 @@ $('#btnDelete').click(function() {
 $(document).on('click','#artikelList a', function() {
 	findById($(this).data('identity'));
 });
-//
-//// Replace broken images with generic wine bottle
-//$("img").error(function(){
-//  $(this).attr("src", "pics/generic.jpg");
-//
-//});
-//
-//function search(searchKey) {
-//	if (searchKey == '') 
-//		findAll();
-//	else
-//		findByName(searchKey);
-//}
-//
+
 function newArtikel() {
-	//$('#btnDelete').hide();
+	
 	currentArtikel = {};
 	renderDetails(currentArtikel); // Display empty form
 }
@@ -75,17 +45,7 @@ function findAll() {
 		success: renderList
 	});
 }
-//
-//function findByName(searchKey) {
-//	console.log('findByName: ' + searchKey);
-//	$.ajax({
-//		type: 'GET',
-//		url: rootURL + '/search/' + searchKey,
-//		dataType: "json",
-//		success: renderList 
-//	});
-//}
-//
+
 function findById(id) {
 	console.log('findById: ' + id);
 	$.ajax({
@@ -109,6 +69,9 @@ function addArtikel() {
 		url: rootURL,
 		dataType: "json",
 		data: formToJSON(),
+               
+                 
+                
 		success: function(data, textStatus, jqXHR){
 			alert('Artikel created successfully' + data.idartikel );
 //			$('#btnDelete').show();
@@ -177,10 +140,6 @@ function renderDetails(artikel) {
 	$('#artikelId').val(artikel.idartikel);
 	$('#name').val(artikel.naam);
 	$('#prijs').val(artikel.prijs);
-//	$('#country').val(wine.country);
-//	$('#region').val(wine.region);Id).remove();
-//	$('#year').val(wine.year);
-//	$('#pic').attr('src', 'pics/' + wine.picture);
 	$('#description').val(artikel.omschrijving);
 }
 
