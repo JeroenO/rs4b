@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class InlogGegevens implements Serializable {
     private String password;
-    private String username;
+    private String username; //email
     private String token;
 
     public String getToken() {

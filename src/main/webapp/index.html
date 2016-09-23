@@ -4,10 +4,16 @@
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styles.css" />
+    <p id="ingelogdAls" > </p>   
+    <p id="shoppingcart" > </p> 
+    <button id="btnCheckOut">check out</button>
+    
+        
     </head>
     <body>
         <a href="inschrijven.html" >sign up </a>
         <a href="inlogscherm.html" >sign in </a>
+        <a href="checkOut.html" >checkoutscherm </a>
         <h1>Onze Producten</h1>
 
         <ul id="artikelList"></ul>
@@ -30,16 +36,25 @@
 
                 <button id="btnSave">Save</button>
                 <button id="btnDelete">Delete</button>
-
+                <div>
+                <button id="btnAddToCart" type = "button" >Voeg Toe aan Winkelwagen</button>
+                <input type = "text" id="aantalArtikel" name="aantalArtikel" required value = "1" pattern="^[0-9]*$"  />
+                </div>
+                
+                
             </div>
 
             <div class="rightArea">
                 <img id="pic" src= "" alt = "pic niet gevonden" height="300"/>
+                <input type="file" id="fileinput" accept="image/*"  />
+                <div id="gallery"></div>
+                
                 <label>Notes:</label>
                 <textarea id="description" name="description"></textarea>
             </div>
         </form>     
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/klantgegevens.js"></script>
     </body>
 </html>

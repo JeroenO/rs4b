@@ -9,20 +9,44 @@ and open the template in the editor.
         <title>inschrijven</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
         <div>Fijn dat u klant wilt worden</div>
+        <br>
         <div>
+            <form  id ="inschrijfForm" >
+            
         <label>voornaam</label>
-        <input type="text" id="voornaam" name="voornaam" required><br>
-                <label>achternaam:</label>
-                <input type="text" id="achternaam" name="achternaam" required><br>
-                <label>email:</label>
-                <input type="text" id="email" name="email" required><br>
-                <label>postcode</label>
-                <input type="text" id="postcode" name="postcode" required><br>
-                <label>password</label>
-                <input type="password" id="password" name="password" required><br>
+        <input type="text" id="voornaam" name="voornaam" pattern=".{3,}" required><br>
+        <label>achternaam:</label>
+        <input type="text" id="achternaam" name="achternaam" required><br>
+        <label>email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <br>
+        <label>straatnaam</label>
+        <input type="text" id="straatnaam" name="straatnaam" required><br>
+         <label>huisnummer</label>
+        <input type="text" id="huisnummer" name="huisnummer"  pattern="^[0-9]*$" required><br>
+         <label>postcode</label>
+        <input type="text" id="postcode" name="postcode" pattern="^[0-9][0-9][0-9][0-9][A-Z][A-Z]$" required><br>
+        <label>plaatsnaam</label>
+        <input type="text" id="plaatsnaam" name="plaatsnaam" required><br>
+<br>
+        <label>password</label>
+        <input type="text" id="password1" name="password1"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,}" required  onchange="inschrijfForm.password2.pattern = this.value;"><br>
+        <label>confirm password</label>
+        <input type="text" id="password2" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,}" required><br><br><br>
+        
+        <button type="submit" id="btnSignUp">Sign up</button>
+<!--        <input id="btnSignUp" type="submit" value="Submit">-->
+           </form>
         </div>
+
+        <br>
+      
+        
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+         <script src="js/inschrijf.js"></script>
     </body>
 </html>

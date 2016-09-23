@@ -6,8 +6,11 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -64,8 +67,8 @@ public class Adres implements Serializable {
     @JoinTable(name = "klant_has_adres", joinColumns = {
         @JoinColumn(name = "adres_idadres", referencedColumnName = "idadres")}, inverseJoinColumns = {
         @JoinColumn(name = "klant_idklant", referencedColumnName = "idklant")})
-    @ManyToMany
-    private Collection<Klant> klantCollection;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Collection<Klant> klantCollection = new HashSet<>();
 
     public Adres() {
     }
@@ -134,7 +137,7 @@ public class Adres implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idadres != null ? idadres.hashCode() : 0);
+        hash += (postcode != null ? (postcode + huisnr).hashCode() : 0);
         return hash;
     }
 
@@ -145,7 +148,8 @@ public class Adres implements Serializable {
             return false;
         }
         Adres other = (Adres) object;
-        if ((this.idadres == null && other.idadres != null) || (this.idadres != null && !this.idadres.equals(other.idadres))) {
+//        if ((this.idadres == null && other.idadres != null) || (this.idadres != null && !this.idadres.equals(other.idadres))) {
+        if ( !this.huisnr.equals(other.huisnr) && !this.postcode.equals(other.postcode)) {
             return false;
         }
         return true;

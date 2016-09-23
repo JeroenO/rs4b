@@ -8,10 +8,12 @@ package entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -69,10 +71,10 @@ public class Klant implements Serializable {
     @Column(name = "geboortedatum")
     @Temporal(TemporalType.DATE)
     private Date geboortedatum;
-    @ManyToMany(mappedBy = "klantCollection")
-    private Collection<Adres> adresCollection;
+    @ManyToMany( cascade = CascadeType.PERSIST, fetch = FetchType.EAGER , mappedBy = "klantCollection") //smell
+    private Collection<Adres> adresCollection = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "klantIdklant")
-    private Collection<Bestelling> bestellingCollection;
+    private Collection<Bestelling> bestellingCollection = new HashSet<>();;
 
     public Klant() {
     }

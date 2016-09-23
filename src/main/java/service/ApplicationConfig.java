@@ -7,6 +7,7 @@ package service;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 /**
  *
@@ -18,6 +19,12 @@ public class ApplicationConfig extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new java.util.HashSet<>();
+        // Add your resources.
+   //     resources.add(UploadFileService.class);
+
+        // Add additional features such as support for Multipart.
+        resources.add(MultiPartFeature.class);
+        
         addRestResourceClasses(resources);
         return resources;
     }
@@ -29,6 +36,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(login.AuthenticationFilter.class);
         resources.add(login.Inlogger.class);
         resources.add(service.AdresFacadeREST.class);
         resources.add(service.ArtikelFacadeREST.class);
@@ -36,6 +44,8 @@ public class ApplicationConfig extends Application {
         resources.add(service.BestellingFacadeREST.class);
         resources.add(service.KlantFacadeREST.class);
         resources.add(service.SoortFacadeREST.class);
+    //     resources.add(service.CredentialsDAO.class);
+       
     }
     
 }

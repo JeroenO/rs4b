@@ -23,12 +23,28 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public T create(T entity) {
+        try {
         getEntityManager().persist(entity);
+        
+        }
+        catch (javax.validation.ConstraintViolationException e) {
+            e.getMessage();
+           System.out.println( e.getConstraintViolations()) ;
+        }
         return entity;
     }
 
-    public void edit(T entity) {
+    public T edit(T entity) {
+       // getEntityManager().merge(entity);
+        try {
         getEntityManager().merge(entity);
+        
+        }
+        catch (javax.validation.ConstraintViolationException e) {
+            e.getMessage();
+           System.out.println( e.getConstraintViolations()) ;
+        }
+        return entity;
     }
 
     public void remove(T entity) {

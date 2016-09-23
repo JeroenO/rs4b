@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,24 +47,24 @@ public class Bestelling implements Serializable {
     @Column(name = "idbestelling")
     private Integer idbestelling;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
+   // @Basic(optional = false)
+  //  @NotNull
     @Column(name = "bedrag")
     private BigDecimal bedrag;
-    @Basic(optional = false)
-    @NotNull
+   // @Basic(optional = false)
+    //@NotNull
     @Column(name = "besteldatum")
     @Temporal(TemporalType.TIMESTAMP)
     private Date besteldatum;
-    @Basic(optional = false)
-    @NotNull
+ //   @Basic(optional = false)
+   // @NotNull
     @Column(name = "bevestigingsnummer")
     private int bevestigingsnummer;
     @JoinColumn(name = "klant_idklant", referencedColumnName = "idklant")
     @ManyToOne(optional = false)
     private Klant klantIdklant;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bestelling")
-    private Collection<BesteldeArtikelen> besteldeArtikelenCollection;
+    private Collection<BesteldeArtikelen> besteldeArtikelenCollection = new HashSet();
 
     public Bestelling() {
     }

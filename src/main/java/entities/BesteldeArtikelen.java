@@ -31,7 +31,7 @@ public class BesteldeArtikelen implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected BesteldeArtikelenPK besteldeArtikelenPK;
+    protected BesteldeArtikelenPK besteldeArtikelenPK ;
     @Basic(optional = false)
     @NotNull
     @Column(name = "aantal")
@@ -39,8 +39,8 @@ public class BesteldeArtikelen implements Serializable {
     @JoinColumn(name = "artikel_idartikel", referencedColumnName = "idartikel", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Artikel artikel;
-    @JoinColumn(name = "bestelling_idbestelling", referencedColumnName = "idbestelling", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "bestelling_idbestelling", referencedColumnName = "idbestelling",  updatable = false, insertable = false)
+    @ManyToOne (optional = false)
     private Bestelling bestelling;
 
     public BesteldeArtikelen() {
@@ -81,6 +81,8 @@ public class BesteldeArtikelen implements Serializable {
 
     public void setArtikel(Artikel artikel) {
         this.artikel = artikel;
+        if (this.bestelling != null) this.besteldeArtikelenPK.setArtikelIdartikel(artikel.getIdartikel());
+        
     }
 
     public Bestelling getBestelling() {
@@ -89,6 +91,8 @@ public class BesteldeArtikelen implements Serializable {
 
     public void setBestelling(Bestelling bestelling) {
         this.bestelling = bestelling;
+      //  this.besteldeArtikelenPK.setBestellingIdbestelling(bestelling.getIdbestelling());
+        if (this.artikel != null) this.besteldeArtikelenPK = new BesteldeArtikelenPK(this.bestelling.getIdbestelling(), this.artikel.getIdartikel());
     }
 
     @Override
