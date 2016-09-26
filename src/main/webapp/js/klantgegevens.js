@@ -40,7 +40,7 @@ function fillCart(aantal) {
         artikel: currentArtikel
     };
 
-    if (shoppingcart[id] === undefined) {
+    if (shoppingcart[id] === undefined || shoppingcart[id] === null ) {
         shoppingcart[id] = besteldArtikel;
     } else {
         shoppingcart[id].aantal += aantal;
@@ -55,15 +55,15 @@ function fillCart(aantal) {
 
 }
 
-function totalPrice(cart) {
-    let totaal = 0;
-    for (let item of cart) {
-        if (item !== undefined) {
-            totaal += item.aantal * item.artikel.prijs;
-        }
-    }
-    return totaal;
-}
+//function totalPrice(cart) {
+//    let totaal = 0;
+//    for (let item of cart) {
+//        if (item !== undefined && item !== null) {
+//            totaal += item.aantal * item.artikel.prijs;
+//        }
+//    }
+//    return totaal;
+//}
 
 function showCart(cart) {
 

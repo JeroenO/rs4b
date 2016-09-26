@@ -1,102 +1,234 @@
 * {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
 }
+html{
+    position:relative; 
+    min-height: 100%;
+}
+html,body{
+    margin:0;
+    padding:0;
+    padding-top: 5px;
+    /*    border:solid 1px #CCCCCC;*/
+    background-color: blue;
+    color: purple;
+    background-image: url("http://jeroenboschvoorbeginners.nl/wp-content/uploads/2015/07/Tuin-der-Lusten-detail-stichting.jpg") ;
+}
+.pageContentWrapper{
+    margin-top: 100px;
+    margin-bottom:100px;/* Height of footer*/
+    position: relative;
 
+} 
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:70px;
+    background:lightcoral;
+    opacity: 0.8;
+}
+/*document{
+    background-color: pink;
+    color: aqua;
+}*/
 .header {
-	padding-top: 5px;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    height:100px;
+    background:lightcoral;
+    opacity: 0.8;
+    /*    position: absolute;
+        display: block;
+         left: 20px;
+        right: 0px;    
+        padding-top: 5px;
+      height: 200px;
+        background-color: blueviolet;
+        top: 0px;
+        color: green;
+        opacity: 0.8;*/
 }
 
+/*footer{
+    display: block;
+   position: absolute;
+   bottom: 15px;
+   
+   left: 0px;
+   right: 0px;
+  
+    background-color: blueviolet;
+    border:solid 1px #CCCCCC;
+    color: red;
+    opacity: 0.9;
+}*/
+
+/*body {
+    padding-top: 5px;
+    border:solid 1px #CCCCCC;
+    background-color: blue;
+    color: purple;
+    background-image: url("http://jeroenboschvoorbeginners.nl/wp-content/uploads/2015/07/Tuin-der-Lusten-detail-stichting.jpg") ;
+}*/
+
+/*.content {
+    position : relative;
+    
+    
+}*/
 .leftArea {
-	position: absolute;
-	left: 10px;
-	top: 70px;
-	bottom: 20px;
-	width: 260px;
-	border:solid 1px #CCCCCC;
-	overflow-y: scroll;
+    position: absolute;
+    left: 100px;
+    top: 10px;
+    bottom: 20px;
+    width: 300px;
+    height: 400px;
+    border:solid 1px #CCCCCC;
+    overflow-y: scroll;
+    color: blue;
+    /*  background-color: red;*/
 }
 
 .mainArea {
-	position: absolute;
-	top: 70px;
-	bottom: 20px;
-	left:300px;
-	overflow-y: scroll;
-	width:300px;
+    text-align: center;
+    position: relative;
+    top: 10px;
+    bottom: 20px;
+    left:500px;
+    /*	overflow-y: scroll;*/
+    width:300px;
+    background-color: lemonchiffon;
+    opacity: 0.8;
 }
 
 .rightArea {
-	position: absolute;
-	top: 70px;
-	bottom: 20px;
-	left:650px;
-	overflow-y: scroll;
-	width:270px;
+    position: absolute;
+    top: 20px;
+    bottom: 10px;
+    left:900px;
+    overflow-y: scroll;
+    width:360px;
 }
 
 ul {
-	list-style-type: none;
-	padding-left: 0px;
-	margin-top: 0px;
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: 0px;
 }
 
 li a { 
-	text-decoration:none;
-	display: block;
-	color: #000000;
-	border-bottom:solid 1px #CCCCCC;
-	padding: 8px;
+    text-decoration:none;
+    display: block;
+    color: mediumblue;
+    border-bottom:solid 1px #CCCCCC;
+    padding: 8px;
 }
 
 li a:hover {
-	background-color: #4B0A1E;
-	color: #BA8A92;
+    background-color: crimson;
+    color: mediumaquamarine;
 }
+li a:visited { background-color: crimson; }
 
 input, textarea {
-  border:1px solid #ccc;
-  min-height:30px;
-  outline: none;
+    border:1px solid #ccc;
+    min-height:30px;
+    outline: none;
+    opacity: 20;
 }
 
 .mainArea input {
-  margin-bottom:15px;
-  margin-top:5px;
-  width:280px;
+    margin-bottom:10px;
+    margin-top:5px;
+    width:280px;
 }
 
 textarea {
-	margin-bottom:15px;
-  	margin-top:5px;
-	height: 200px;
-  	width:250px;
+    margin-bottom:200px;
+    margin-top:5px;
+    height: 200px;
+    width:250px;
+    color: green;
 }
 
 label {
-	display:block;
+    display:block;
 }
 
 button {
-	padding:6px;
+    padding:6px;
 }
 
 
 #searchKey {
-	width:160px;
+    width:160px;
 }
 
 
-  input:required:invalid, input:focus:invalid {
+input:required:invalid, input:focus:invalid {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNqkU01oE1EQ/mazSTdRmqSxLVSJVKU9RYoHD8WfHr16kh5EFA8eSy6hXrwUPBSKZ6E9V1CU4tGf0DZWDEQrGkhprRDbCvlpavan3ezu+LLSUnADLZnHwHvzmJlvvpkhZkY7IqFNaTuAfPhhP/8Uo87SGSaDsP27hgYM/lUpy6lHdqsAtM+BPfvqKp3ufYKwcgmWCug6oKmrrG3PoaqngWjdd/922hOBs5C/jJA6x7AiUt8VYVUAVQXXShfIqCYRMZO8/N1N+B8H1sOUwivpSUSVCJ2MAjtVwBAIdv+AQkHQqbOgc+fBvorjyQENDcch16/BtkQdAlC4E6jrYHGgGU18Io3gmhzJuwub6/fQJYNi/YBpCifhbDaAPXFvCBVxXbvfbNGFeN8DkjogWAd8DljV3KRutcEAeHMN/HXZ4p9bhncJHCyhNx52R0Kv/XNuQvYBnM+CP7xddXL5KaJw0TMAF8qjnMvegeK/SLHubhpKDKIrJDlvXoMX3y9xcSMZyBQ+tpyk5hzsa2Ns7LGdfWdbL6fZvHn92d7dgROH/730YBLtiZmEdGPkFnhX4kxmjVe2xgPfCtrRd6GHRtEh9zsL8xVe+pwSzj+OtwvletZZ/wLeKD71L+ZeHHWZ/gowABkp7AwwnEjFAAAAAElFTkSuQmCC);
     background-position: right top;
     background-repeat: no-repeat;
     -moz-box-shadow: none;
-  }
-  input:required:valid {
+}
+input:required:valid {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAepJREFUeNrEk79PFEEUx9/uDDd7v/AAQQnEQokmJCRGwc7/QeM/YGVxsZJQYI/EhCChICYmUJigNBSGzobQaI5SaYRw6imne0d2D/bYmZ3dGd+YQKEHYiyc5GUyb3Y+77vfeWNpreFfhvXfAWAAJtbKi7dff1rWK9vPHx3mThP2Iaipk5EzTg8Qmru38H7izmkFHAF4WH1R52654PR0Oamzj2dKxYt/Bbg1OPZuY3d9aU82VGem/5LtnJscLxWzfzRxaWNqWJP0XUadIbSzu5DuvUJpzq7sfYBKsP1GJeLB+PWpt8cCXm4+2+zLXx4guKiLXWA2Nc5ChOuacMEPv20FkT+dIawyenVi5VcAbcigWzXLeNiDRCdwId0LFm5IUMBIBgrp8wOEsFlfeCGm23/zoBZWn9a4C314A1nCoM1OAVccuGyCkPs/P+pIdVIOkG9pIh6YlyqCrwhRKD3GygK9PUBImIQQxRi4b2O+JcCLg8+e8NZiLVEygwCrWpYF0jQJziYU/ho2TUuCPTn8hHcQNuZy1/94sAMOzQHDeqaij7Cd8Dt8CatGhX3iWxgtFW/m29pnUjR7TSQcRCIAVW1FSr6KAVYdi+5Pj8yunviYHq7f72po3Y9dbi7CxzDO1+duzCXH9cEPAQYAhJELY/AqBtwAAAAASUVORK5CYII=);
     background-position: right top;
     background-repeat: no-repeat;
-  }
+}
+
+#tableData {
+    text-align: center;
+    color: darkseagreen;
+    background-color: whitesmoke;
+    width:600px;
+    border: 3px solid black;
+    opacity: 20;
+}
+
+#tableData td, th{
+    border: 2px solid black;
+}
+#tableFooter td, tfoot {
+    color: red;
+    border: 4px brown;
 
 
+}
+tr a { 
+    text-decoration:none;
+    display: block;
+    color: lightseagreen;
+    border-bottom:solid 1px #CCCCCC;
+    padding: 8px;
+    
+}
+tr a:hover {
+    background-color: #4B0A1E;
+    color: #BA8A92;
+}
+#inlogForm {
+
+    text-align: center;
+}
+.inlogInfo{
+    
+    float: right;
+    padding-right: 2px;
+}
+.header a {
+    text-decoration: none;
+    padding:  10px;
+}
+#titel {
+    font-size: xx-large;
+    font-family: fantasy;
+    color: gold;
+    text-align: center;
+    
+}

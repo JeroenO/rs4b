@@ -146,7 +146,7 @@ public class Klant implements Serializable {
         this.geboortedatum = geboortedatum;
     }
 
-    @XmlTransient
+//    @XmlTransient
     public Collection<Adres> getAdresCollection() {
         return adresCollection;
     }

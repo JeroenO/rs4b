@@ -7,24 +7,77 @@ and open the template in the editor.
 <html>
     <head>
         <title>TODO supply a title</title>
-        
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-        
-      
+        <link rel="stylesheet" href="css/styles.css" />
+
+
     </head>
     <body>
-        <div>TODO write content</div>
-        <p id="shoppingcart" > </p> 
-        <button id="btnBuy">Buy</button>
-        <ul id="artikelCart"></ul>
-        
-        
-       
+        <div class = "header">
+
+            <a href="inschrijven.html" > sign up </a>
+            <a href="inlogscherm.html" > sign in </a>
+            <div class = "inlogInfo">
+                <a id="ingelogdAls" > </a> <br>
+               
+                <a id= "shoppingcart" ></a>  
+            </div>
+
+        </div> 
+        <div class ="pageContentWrapper">
+
+
+            <p id="shoppingcart" > </p> 
+            <button id="btnBuy">Buy</button>
+            <ul id="artikelCart"></ul>
+
+              <table id="tableData" >
+
+            <!-- caption can be used to define a table title -->
+            <caption id = "tabelNaam" >Bestelling</caption>
+
+            <!-- thead shows at the top of the table and must come before tbody -->
+            <thead>
+                <tr>
+                    <td colspan="5">uw nieuwe vrienden</td>
+                </tr>
+            </thead>
+
+            
+            <tfoot id = "tableFooter">
+                
+                <tr><td colspan="3">van ruilen komt huilen</td></tr>
+            </tfoot>
+
+            <!-- The main data for the table goes between tbody if you use thead or tfoot -->
+            <tbody id="tableBody">
+                <tr>
+                    <td></td>
+                    <td>Naam</td>
+                    <td>Aantal</td>
+                    <td>Prijs</td>
+                </tr>
+
+               
+
+              
+            </tbody>
+
+        </table>
+
+        </div>
+        <div class="footer">
+            doei
+            dag
+            watnu <br>
+            hoe
+        </div>
+
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-       
-       
+
+
         <script src="js/checkOut.js"></script>
     </body>
 </html>

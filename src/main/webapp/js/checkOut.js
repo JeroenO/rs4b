@@ -9,6 +9,8 @@ let shoppingcart = JSON.parse(sessionStorage.getItem('shoppingcart'));
 console.log(" cart is nu " + typeof(shoppingcart) + shoppingcart) ;
 
 showCartList();
+
+
 document.getElementById("shoppingcart").innerHTML = "in cart " + totalPrice(shoppingcart);
 
 $('#btnBuy').click(function () {
@@ -30,7 +32,7 @@ function showCartList() {
     }
     console.log('korte lijst is nu ' + korteLijst.length);
     renderCart(korteLijst);
-    
+    renderTabel(korteLijst);
   //  sessionStorage.setItem('shoppingcart' , JSON.stringify(shoppingcart));
   //  console.log('sessionstorage  ' + JSON.parse(sessionStorage.getItem('shoppingcart')));
     return false;
@@ -82,7 +84,12 @@ function buyBestelling() {
             alert('Bestelling placed successfully ');
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert('Bestelling placed error: ' + textStatus + errorThrown);
+            alert('Bestelling placed error: ' + errorThrown);
+           
+            if (errorThrown === 'Unauthorized') {
+                
+                window.location.replace("inlogscherm.html");
+            } 
         }
     });
 }
@@ -100,4 +107,21 @@ function cartToJSON() {
         
     //    "image": uploadfiles.files[0]
     );
+}
+function renderTabel(data) {
+    // JAX-RS serializes an empty list as null, and a 'collection of one' as an object (not an 'array of one')
+    let list = data === null ? [] : (data instanceof Array ? data : [data]);
+
+//    $('#tableBody tr').remove();
+    $.each(list, function (index, artikel) {
+   //     console.log("..");
+        addToTabel(artikel); //$('#artikelList').append('<li><a href="#" data-identity="' + artikel.idartikel + '">'+artikel.naam+'</a></li>');
+    });
+}
+function addToTabel(besteldArtikel) {
+//console.log("artikel " + artikelData.idartikel);
+let artikel = besteldArtikel.artikel;
+    let aantal = besteldArtikel.aantal;
+    $('#tableBody').append
+    ('<tr> <td><a href = "#" data-identity= "'+artikel.naam +'" >dump</td><td>' +artikel.naam +"</td><td>" +aantal +"</td><td>" +artikel.prijs +"</td>  </a></tr>");
 }

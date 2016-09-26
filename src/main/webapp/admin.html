@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <table id="tableData" >
+
+            <!-- caption can be used to define a table title -->
+            <caption id = "tabelNaam" >Klanten</caption>
+
+            <!-- thead shows at the top of the table and must come before tbody -->
+            <thead>
+                <tr>
+                    <td colspan="5">onze klanten</td>
+                </tr>
+            </thead>
+
+            <!-- thead shows at the bottom of the table and must come before tbody -->
+
+            <tfoot id = "tableFooter">
+                <!-- You can define how many rows are taken up with colspan and you can take up multiple rows with rowspan -->
+                <!-- tr defines the row and td each cell -->
+                <tr><td colspan="5">* meerdere adressen</td></tr>
+            </tfoot>
+
+            <!-- The main data for the table goes between tbody if you use thead or tfoot -->
+            <tbody id="tableBody">
+                <tr>
+                    <td></td>
+                    <td>Average</td>
+                    <td>RBIs</td>
+                    <td>Homeruns</td>
+                </tr>
+
+                <tr>
+                    <td>Hank Aaron*</td>
+                    <td>.305</td>
+                    <td>2297</td>
+                    <td>755</td>
+                </tr>
+
+                <tr>
+                    <td>Babe Ruth*</td>
+                    <td>.342</td>
+                    <td>2214</td>
+                    <td>714</td>
+                </tr>
+
+                <tr>
+                    <td>Barry Bonds</td>
+                    <td>.298</td>
+                    <td>1996</td>
+                    <td>762</td>
+                </tr>
+            </tbody>
+
+        </table>
+        <table id="tableAdres" >
+            <caption id = "tabelAdresNaam" >Adres</caption>
+            <thead>
+                <tr>
+                    <td colspan="5">adres van klant</td>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr><td colspan="5"> footer </td></tr>
+            </tfoot>
+        </table>
+        
+        <label id ="klantId">...</label>
+ <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="js/admin.js"></script>
+    </body>
+</html>

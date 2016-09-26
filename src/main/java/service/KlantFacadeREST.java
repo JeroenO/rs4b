@@ -8,6 +8,7 @@ package service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import entities.Adres;
 import entities.Artikel;
 import entities.BesteldeArtikelen;
 import entities.Bestelling;
@@ -15,6 +16,7 @@ import entities.Klant;
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 
 import java.util.List;
@@ -34,6 +36,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import login.AuthenticatedUser;
 import login.Secured;
+import wrappers.AdresZonderCollection;
 
 /**
  *
@@ -151,7 +154,30 @@ Map<Integer, Integer> myMap =  new Gson().fromJson(inkomend, type);
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Klant find(@PathParam("id") Integer id) {
+       
         return super.find(id);
+    }
+    
+     @GET
+    @Path("/adressen/{id}") //// niet nodig
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findAdressen(@PathParam("id") Integer klantid) {
+       return  new Gson().toJson(
+               super.find(klantid)
+                       .getAdresCollection()
+                       .stream()
+                       .map(e -> {  e.setKlantCollection(new HashSet()); return e;} ));
+      //  return super.find(id);
+    }
+    public AdresZonderCollection verwijderCollectie(Adres volAdres){
+        AdresZonderCollection leegAdres = new AdresZonderCollection();
+        leegAdres.setHuisnr(volAdres.getHuisnr());
+        leegAdres.setIdadres(volAdres.getIdadres());
+        leegAdres.setPlaatsnaam(volAdres.getPlaatsnaam());
+        leegAdres.setPostcode(volAdres.getPostcode());
+        leegAdres.setStraat(volAdres.getStraat());
+        
+        return leegAdres;
     }
 
     @GET
