@@ -116,9 +116,10 @@ Map<Integer, Integer> myMap =  new Gson().fromJson(inkomend, type);
         
         return deelBesteld;        
     }
-    
-    
-    public Klant findByEmail(String email) {
+    @GET
+    @Path("{email: (?=.*@).{3,} }")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Klant findByEmail(@PathParam("email") String email) {
         String qlString = "select a FROM Klant a where a.email = :em";
         List klantlist = em.createQuery(qlString).setParameter("em", email).getResultList();
         if (!klantlist.isEmpty()) {
@@ -141,6 +142,7 @@ Map<Integer, Integer> myMap =  new Gson().fromJson(inkomend, type);
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Klant entity) {
+        System.out.println("klant = " + entity + entity.getVoornaam());
         super.edit(entity);
     }
 

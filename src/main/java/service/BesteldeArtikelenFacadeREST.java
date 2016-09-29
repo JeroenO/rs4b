@@ -7,10 +7,12 @@ package service;
 
 import entities.BesteldeArtikelen;
 import entities.BesteldeArtikelenPK;
+import entities.Bestelling;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -27,7 +29,7 @@ import javax.ws.rs.core.PathSegment;
  * @author jeroen
  */
 @Stateless
-@Path("entities.besteldeartikelen")
+@Path("/BesteldeArtikelen")
 public class BesteldeArtikelenFacadeREST extends AbstractFacade<BesteldeArtikelen> {
 
     @PersistenceContext(unitName = "com.me_ws4_war_1.0-SNAPSHOTPU")
@@ -79,12 +81,24 @@ public class BesteldeArtikelenFacadeREST extends AbstractFacade<BesteldeArtikele
         super.remove(super.find(key));
     }
 
+//    @GET
+//    @Path("{id}")
+//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    public BesteldeArtikelen find(@PathParam("id") PathSegment id) {
+//        entities.BesteldeArtikelenPK key = getPrimaryKey(id);
+//        return super.find(key);
+//    }
+    
     @GET
-    @Path("{id}")
+  @Path("{idbestelling}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public BesteldeArtikelen find(@PathParam("id") PathSegment id) {
-        entities.BesteldeArtikelenPK key = getPrimaryKey(id);
-        return super.find(key);
+    public List<BesteldeArtikelen> findVanBestelling(@PathParam("idbestelling") Integer bestellingId) {
+        System.out.println(" komt binnen bestellingId = " + bestellingId);
+        Bestelling opgezochteBestelling = getEntityManager().find(Bestelling.class, bestellingId);
+        
+        String qlString = "select a FROM BesteldeArtikelen a where a.bestelling = :bes";
+        Query q = em.createQuery(qlString).setParameter("bes", opgezochteBestelling);
+        return (List<BesteldeArtikelen>) q.getResultList();
     }
 
     @GET

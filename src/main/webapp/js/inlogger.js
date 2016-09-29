@@ -9,8 +9,13 @@ const inlogURL = "https://localhost:8181/ws4/webresources/login";
 //console.log("testToken " + token());
 $('#btnLogin').click(function() {
 	getToken();
-	return false;
-        
+	return false;        
+});
+
+$('#btnAdmin').click(function() {
+    console.log("naar admin");
+	window.location.replace("admin.html");
+	return false;        
 });
 
 

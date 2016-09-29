@@ -12,13 +12,21 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <div>Fijn dat u klant wilt worden</div>
+        <div class = "header">
+            <h1 id ="titel">Fantasy Friends</h1>
+            
+            <a href="index.html" >  home </a>
+            
+
+        </div>  
+        <div class ="pageContentWrapper">
+       
         <br>
         <div>
-            <form  id ="inschrijfForm" >
+            <form  id ="inschrijfForm" ><br>
             
         <label>voornaam</label>
-        <input type="text" id="voornaam" name="voornaam" pattern=".{3,}" required><br>
+        <input type="text" id="voornaam" name="voornaam: " pattern=".{3,}" required><br>
         <label>achternaam:</label>
         <input type="text" id="achternaam" name="achternaam" required><br>
         <label>email:</label>
@@ -27,7 +35,8 @@ and open the template in the editor.
         <label>straatnaam</label>
         <input type="text" id="straatnaam" name="straatnaam" required><br>
          <label>huisnummer</label>
-        <input type="text" id="huisnummer" name="huisnummer"  pattern="^[0-9]*$" required><br>
+        <input type="text" id="huisnummer" name="huisnummer"  pattern="^[0-9]*$" required><br> 
+<!--        ^[0-9]*$-->
          <label>postcode</label>
         <input type="text" id="postcode" name="postcode" pattern="^[0-9][0-9][0-9][0-9][A-Z][A-Z]$" required><br>
         <label>plaatsnaam</label>
@@ -39,13 +48,19 @@ and open the template in the editor.
         <input type="text" id="password2" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,}" required><br><br><br>
         
         <button type="submit" id="btnSignUp">Sign up</button>
+        <br><br>
 <!--        <input id="btnSignUp" type="submit" value="Submit">-->
            </form>
         </div>
 
-        <br>
-      
-        
+       
+        </div>
+         <div class="footer">
+            doei
+            dag
+            watnu <br>
+            hoe
+        </div>
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
          <script src="js/inschrijf.js"></script>
     </body>

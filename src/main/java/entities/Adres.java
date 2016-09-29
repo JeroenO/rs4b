@@ -13,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -64,10 +65,12 @@ public class Adres implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "plaatsnaam")
     private String plaatsnaam;
-    @JoinTable(name = "klant_has_adres", joinColumns = {
-        @JoinColumn(name = "adres_idadres", referencedColumnName = "idadres")}, inverseJoinColumns = {
-        @JoinColumn(name = "klant_idklant", referencedColumnName = "idklant")})
-    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "klant_has_adres", joinColumns = {
+//        @JoinColumn(name = "adres_idadres", referencedColumnName = "idadres")}, inverseJoinColumns = {
+//        @JoinColumn(name = "klant_idklant", referencedColumnName = "idklant")})
+//    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany( cascade = CascadeType.PERSIST , mappedBy = "adresCollection") 
+    
     private Collection<Klant> klantCollection = new HashSet<>();
 
     public Adres() {

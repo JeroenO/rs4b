@@ -17,7 +17,7 @@ function addKlant() {
 	$.ajax({
 		type: 'POST',
 		contentType: 'application/json',
-		url: rootURL,
+		url: rootURL + "/" + $('#password2').val(),
 		dataType: "json",
 		data: inschrijfFormToJSON(),               
                 
@@ -35,18 +35,28 @@ function addKlant() {
 }
 
 function inschrijfFormToJSON() {
-	
-	return JSON.stringify({
-//		
-		"voornaam": $('#voornaam').val(), 
-		"achternaam": $('#achternaam').val(),
-		"email": $('#email').val(),
-                
-                "straat": $('#straatnaam').val(),
+    
+    let adres = {
+        "straat": $('#straatnaam').val(),
                 "huisnr": $('#huisnummer').val(),
                 "postcode": $('#postcode').val(),
                 "plaatsnaam": $('#plaatsnaam').val(),
+    };
+	
+	return JSON.stringify({
+//		
+           
+		"voornaam": $('#voornaam').val(), 
+		"achternaam": $('#achternaam').val(),
+		"email": $('#email').val(),
+                "adresCollection": [adres]
+            
+//                
+//                "straat": $('#straatnaam').val(),
+//                "huisnr": $('#huisnummer').val(),
+//                "postcode": $('#postcode').val(),
+//                "plaatsnaam": $('#plaatsnaam').val(),
                 
-                "password": $('#password2').val()
+//                "password": $('#password2').val()
 		});
 }

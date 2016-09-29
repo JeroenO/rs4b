@@ -45,7 +45,7 @@ public class Credentials implements Serializable {
     @Size(min = 1, max = 9999)
     @Column(name = "password")
     private String password;
-    @Size(max = 45)
+    @Size(max = 80)
     @Column(name = "token")
     private String token;
 

@@ -26,14 +26,11 @@ html,body{
     bottom: 0;
     left: 0;
     right: 0;
-    height:70px;
+    height:90px;
     background:lightcoral;
     opacity: 0.8;
 }
-/*document{
-    background-color: pink;
-    color: aqua;
-}*/
+
 .header {
     position: absolute;
     top:0;
@@ -42,45 +39,12 @@ html,body{
     height:100px;
     background:lightcoral;
     opacity: 0.8;
-    /*    position: absolute;
-        display: block;
-         left: 20px;
-        right: 0px;    
-        padding-top: 5px;
-      height: 200px;
-        background-color: blueviolet;
-        top: 0px;
-        color: green;
-        opacity: 0.8;*/
+   
 }
 
-/*footer{
-    display: block;
-   position: absolute;
-   bottom: 15px;
-   
-   left: 0px;
-   right: 0px;
-  
-    background-color: blueviolet;
-    border:solid 1px #CCCCCC;
-    color: red;
-    opacity: 0.9;
-}*/
 
-/*body {
-    padding-top: 5px;
-    border:solid 1px #CCCCCC;
-    background-color: blue;
-    color: purple;
-    background-image: url("http://jeroenboschvoorbeginners.nl/wp-content/uploads/2015/07/Tuin-der-Lusten-detail-stichting.jpg") ;
-}*/
 
-/*.content {
-    position : relative;
-    
-    
-}*/
+
 .leftArea {
     position: absolute;
     left: 100px;
@@ -96,7 +60,7 @@ html,body{
 
 .mainArea {
     text-align: center;
-    position: relative;
+    position: absolute;
     top: 10px;
     bottom: 20px;
     left:500px;
@@ -158,6 +122,7 @@ textarea {
 
 label {
     display:block;
+   
 }
 
 button {
@@ -186,23 +151,93 @@ input:required:valid {
     text-align: center;
     color: darkseagreen;
     background-color: whitesmoke;
+/*    width:600px;*/
+    border: 3px solid pink;
+    opacity: 10;
+    
+   
+}
+#tableDataCheckOut {
+    text-align: center;
+    color: darkseagreen;
+    background-color: whitesmoke;
     width:600px;
-    border: 3px solid black;
-    opacity: 20;
+    border: 3px solid pink;
+    opacity: 0.7;
+    
+   
+}
+#tableBody {
+    display: block;
+    
+    max-height: 180px;
+/*    width: 500px;*/
+    overflow-y: scroll;
+    
+}
+#tableBodyCheckOut {
+      
+    width: 800px;
+       
+}
+#tableFooter  {    
+    display: table;
+    width: 100%;
 }
 
 #tableData td, th{
-    border: 2px solid black;
+    border: 2px solid pink;
+     
 }
-#tableFooter td, tfoot {
+#tableDataCheckOut td, th{
+    border: 2px solid pink;
+     
+}
+
+#tableBodyBestelling{
+    
+    display: block;
+    max-height:  200px;
+     overflow-y: scroll;
+}
+#tableDataBestelling td, th{
+    border: 2px solid pink;
+    background-color: wheat;
+}
+#tableFooterBestelling {
     color: red;
     border: 4px brown;
+    text-align: center;
+    background-color: blue;
 
 
+}
+#tableDataBesteldeArtikelen {
+    border: 2px solid purple;
+    background-color: moccasin;
+    color: darksalmon;
+    
+}
+
+#tableDataBesteldeArtikelen td, th{
+    border: 2px solid purple;
+    background-color: moccasin;
+    color: darksalmon;
+}
+#tableFooter td, tfoot {
+    
+    border: 4px solid pink;
+    background-color: lightyellow;
+
+}
+#checkoutTable {
+     margin-left: auto;
+     margin-right: auto;
+     width: 50%;
 }
 tr a { 
     text-decoration:none;
-    display: block;
+/*    display: block;*/
     color: lightseagreen;
     border-bottom:solid 1px #CCCCCC;
     padding: 8px;
@@ -213,12 +248,55 @@ tr a:hover {
     color: #BA8A92;
 }
 #inlogForm {
-
     text-align: center;
 }
-.inlogInfo{
+#inschrijfForm {
+    margin-left: auto;
+     margin-right: auto;
+     width: 40%;
     
-    float: right;
+    text-align: center;
+    background-color: lightskyblue;
+    opacity: 0.6;
+}
+
+#inschrijfForm label {
+    display: inline-block;
+    width: 120px;
+    text-align : right;
+    color: blue;
+}
+#persoonsForm, #adresForm {
+    margin-left: 0%;
+    
+     margin-right: auto;
+     width: 40%;
+    
+    text-align: center;
+    background-color: lightskyblue;
+    opacity: 0.7;
+}
+
+#persoonsForm label, #adresForm label {
+    display: inline-block;
+    width: 90px;
+    text-align : right;
+    color: blue;
+}
+
+.footer label{
+    display: inline-block;
+}
+#inschrijfForm input {
+    
+    color: blue;
+}
+
+#inlogInfo{
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    text-align: right;
     padding-right: 2px;
 }
 .header a {

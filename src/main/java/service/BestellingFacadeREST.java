@@ -6,10 +6,12 @@
 package service;
 
 import entities.Bestelling;
+import entities.Klant;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  * @author jeroen
  */
 @Stateless
-@Path("entities.bestelling")
+@Path("/Bestelling")
 public class BestellingFacadeREST extends AbstractFacade<Bestelling> {
 
     @PersistenceContext(unitName = "com.me_ws4_war_1.0-SNAPSHOTPU")
@@ -55,11 +57,21 @@ public class BestellingFacadeREST extends AbstractFacade<Bestelling> {
         super.remove(super.find(id));
     }
 
+//    @GET
+//    @Path("{id}")
+//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    public Bestelling find(@PathParam("id") Integer id) {
+//        return super.find(id);
+//    }
     @GET
-    @Path("{id}")
+    @Path("{klantId}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Bestelling find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public List<Bestelling> findVanKlant(@PathParam("klantId") Integer id) {
+        Klant opgezochteKlant = getEntityManager().find(Klant.class, id);
+        System.out.println(" komt binnen klantid = " + id);
+        String qlString = "select a FROM Bestelling a where a.klantIdklant = :kl";
+        Query q = em.createQuery(qlString).setParameter("kl", opgezochteKlant);
+        return (List<Bestelling>) q.getResultList();
     }
 
     @GET

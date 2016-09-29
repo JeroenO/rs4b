@@ -17,6 +17,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -71,7 +73,14 @@ public class Klant implements Serializable {
     @Column(name = "geboortedatum")
     @Temporal(TemporalType.DATE)
     private Date geboortedatum;
-    @ManyToMany( cascade = CascadeType.PERSIST, fetch = FetchType.EAGER , mappedBy = "klantCollection") //smell
+//    @ManyToMany( cascade = CascadeType.PERSIST, fetch = FetchType.EAGER , mappedBy = "klantCollection") //smell
+//    
+    
+    
+    @JoinTable(name = "klant_has_adres", joinColumns = {
+        @JoinColumn(name = "klant_idklant", referencedColumnName = "idklant")}, inverseJoinColumns = {
+        @JoinColumn(name = "adres_idadres", referencedColumnName = "idadres")})
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)//smell
     private Collection<Adres> adresCollection = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "klantIdklant")
     private Collection<Bestelling> bestellingCollection = new HashSet<>();;

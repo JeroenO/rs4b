@@ -5,8 +5,8 @@
  */
 package login;
 
-import entities.Klant;
-import java.util.List;
+import java.security.SecureRandom;
+import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -14,6 +14,7 @@ import org.abstractj.kalium.NaCl;
 import org.abstractj.kalium.crypto.Password;
 import org.abstractj.kalium.encoders.Encoder;
 import org.abstractj.kalium.encoders.Hex;
+import org.apache.commons.lang.ArrayUtils;
 
 /**
  *
@@ -40,9 +41,11 @@ public class Encryption {
     
     
     public static String encryptPassword( String password) {
-       System.out.println("password to encrypt =   "+ password);  
+       System.out.println("password to encrypt =   "+ password);
+       byte[] salt = getSalt();
+       byte[] saltedPassword = (byte[])ArrayUtils.addAll(salt, password.getBytes());
         long startTime = System.nanoTime();
-        String encrypted = pw.hash(password.getBytes(), hex ,NaCl.Sodium.CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE, NaCl.Sodium.CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE);
+        String encrypted = hex.encode(salt) + pw.hash(saltedPassword, hex , NaCl.Sodium.CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE, NaCl.Sodium.CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE);
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
         System.out.println("encryption took ms  "+ duration/1000000);
@@ -54,10 +57,15 @@ public class Encryption {
     }
     
     public static boolean verifyPassword(String password, String inDB) {
-        byte[] hashedPassword = hex.decode(inDB);
+        String ongezouten = inDB.substring(32);
+        String zout = inDB.substring(0, 32);
+        byte[] hashedPassword = hex.decode(ongezouten);
         
-        
-        return pw.verify(hashedPassword, password.getBytes());
+        //eerste deel dbhash is oorspronkelijk salt dus vergelijk 2e deel met getyptePW + het zout
+        // om mij nog  onbekende reden doet pw.verify dit niet goed zelf
+        byte[] vleugje = hex.decode(zout);
+        byte[] ingevoerd = (byte[])ArrayUtils.addAll(vleugje, password.getBytes());
+        return pw.verify( hashedPassword , ingevoerd);
         
         
     }
@@ -65,7 +73,13 @@ public class Encryption {
         
         return hex.encode(bites);
     }
-    
+    public static byte[] getSalt() {
+        Random random = new SecureRandom();
+        byte[] salt =  new byte[16];
+        random.nextBytes(salt);
+       
+        return salt;
+    }
     
     
 }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/styles.css" />
+
+    </head>
+
+    <body>
+
+        <div class = "header">
+            <h1 id ="titel">Fantasy Friends</h1>
+
+<a href="index.html" >  home </a>
+            <div id = "inlogInfo">
+                <a id="ingelogdAls" > </a> <br>
+
+            </div>
+
+        </div>  
+        <div class ="pageContentWrapper">
+            <form  id ="persoonsForm" ><br>
+                <label>id</label>
+                <input type="text" id="klantId" name="klantId "  disabled><br>  
+                <label>voornaam</label>
+                <input type="text" id="voornaam" name="voornaam: " pattern=".{3,}" disabled><br>
+                <label>achternaam:</label>
+                <input type="text" id="achternaam" name="achternaam" disabled><br>
+                <label>email:</label>
+                <input type="email" id="email" name="email" disabled><br>
+                <br>        
+                <button  id="btnWijzig">wijzig</button>
+                <button type="submit" id="btnUpdate">save</button>
+                <br><br>
+
+            </form>
+            <form  id ="adresForm" ><br>
+                <label>id</label>
+                <input type="text" id="idadres" name="idadres"  disabled><br>  
+                <label>straat:</label>
+                <input type="text" id="straat" name="straat" disabled><br>
+                <label>huisnr:</label>
+                <input type="text" id="huisnr" name="huisnr" disabled><br>
+                <label>postcode:</label>
+                <input type="text" id="postcode" name="postcode" disabled><br>
+                <label>plaatsnaam:</label>
+                <input type="text" id="plaatsnaam" name="plaatsnaam" disabled><br>
+                <br> 
+                 <button type="submit" id="btnSaveAdres">save</button>
+                <button  type = "button" id="btnWijzigAdres">wijzig</button>
+                <button  type = "button" id="btnNieuwAdres">extra adres</button>
+               
+                <button type = "button" id="btnNextAdres">next</button>
+                <br><br>
+
+            </form>
+            
+<!--                <button  id="btnNieuwAdres">extra adres</button>-->
+<!--                <button  id="btnNextAdres">next</button>-->
+      
+         <div class="mainArea">
+        <table id="tableDataBestelling" >
+            <caption id = "tabelNaamBestelling" >Bestellingen</caption>
+            <thead>
+                <tr>
+                    <td colspan="3">uw bestellingen</td>
+                </tr>
+            </thead>
+            <tfoot id = "tableFooterBestelling">
+                <tr><td colspan="3"> bestellingen </td></tr>
+            </tfoot>
+            <tbody id="tableBodyBestelling">
+            </tbody>
+            
+        </table>
+             <div id = "chatroom">
+              <label id = "gespreksPartner"> BabbelBox: </label>
+                <input type="text" id="chat" name="chat" />
+                <h3 id = "antwoord" >  </h3>
+             </div>
+         </div>
+          <div class="rightArea">
+        <table id="tableDataBesteldeArtikelen" >
+            <caption id = "tabelNaamBesteldeArtikelen" >artikelen</caption>
+            <thead>
+                <tr>
+                    <td colspan="4">vrienden</td>
+                </tr>
+            </thead>
+            <tfoot id = "tableFooterBesteldeArtikelen">
+                <tr><td colspan="4"> je vriendjes </td></tr>
+            </tfoot>
+            <tbody id="tableBodyBesteldeArtikelen">
+            </tbody>
+        </table>
+              
+               <img id="pic" src= "" alt = "pic niet gevonden" height="300"/>
+              
+        </div>
+                
+        </div>
+        <div class="footer">
+            doei
+            dag
+            watnu <br>
+            hoe
+        </div>
+
+
+
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/klantgegevens.js"></script>
+        <script src="js/personalia.js"></script>
+
+    </body>
+</html>

@@ -62,7 +62,7 @@ public class Bestelling implements Serializable {
     private int bevestigingsnummer;
     @JoinColumn(name = "klant_idklant", referencedColumnName = "idklant")
     @ManyToOne(optional = false)
-    private Klant klantIdklant;
+    private Klant klantIdklant; //was type Klant 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bestelling")
     private Collection<BesteldeArtikelen> besteldeArtikelenCollection = new HashSet();
 

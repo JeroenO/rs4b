@@ -8,10 +8,14 @@ let token = sessionStorage.getItem('token');
 let shoppingcart = JSON.parse(sessionStorage.getItem('shoppingcart'));
 console.log(" cart is nu " + typeof(shoppingcart) + shoppingcart) ;
 
-showCartList();
+showCartTabel();
+showTotalen();
 
 
-document.getElementById("shoppingcart").innerHTML = "in cart " + totalPrice(shoppingcart);
+$(document).on('click', '#tableBodyCheckOut a', function () {
+    removeFromCart($(this).data('identity'));
+    recalculateCart();
+});
 
 $('#btnBuy').click(function () {
     buyBestelling();
@@ -19,8 +23,16 @@ $('#btnBuy').click(function () {
 
 });
 
+$('#chat').bind('keypress', function (e){
+    let code = e.which;
+     console.log(code);
+    if (code === 13) {
+        document.getElementById("antwoord").innerHTML = getAnswer($('#chat').val());
+    }
+   
 
-function showCartList() {
+});
+function showCartTabel() {
     console.log('chout button  ' + shoppingcart.length);
     let korteLijst = [];
     for (let item of shoppingcart) {
@@ -31,32 +43,30 @@ function showCartList() {
         }
     }
     console.log('korte lijst is nu ' + korteLijst.length);
-    renderCart(korteLijst);
+//    renderCart(korteLijst);
     renderTabel(korteLijst);
   //  sessionStorage.setItem('shoppingcart' , JSON.stringify(shoppingcart));
   //  console.log('sessionstorage  ' + JSON.parse(sessionStorage.getItem('shoppingcart')));
     return false;
 
 }
+function showTotalen() {
+document.getElementById("shoppingcart").innerHTML = "in cart " + totalPrice(shoppingcart);
 
-function renderCart(data) {
-    // JAX-RS serializes an empty list as null, and a 'collection of one' as an object (not an 'array of one')
-    let list = data === null ? [] : (data instanceof Array ? data : [data]);
+document.getElementById("tableFooterCheckOut").innerHTML = '<td colspan="3"></td><td colspan="1">' + totalPrice(shoppingcart)+ '  </td>';
+}
+function recalculateCart(){
+    
+    sessionStorage.setItem('shoppingcart' , JSON.stringify(shoppingcart));
+    showTotalen();
+}
 
-    $('#artikelCart li').remove();
-    $.each(list, function (index, besteldArtikel) {
-        addToCart(besteldArtikel);//$('#artikelList').append('<li><a href="#" data-identity="' + artikel.idartikel + '">'+artikel.naam+'</a></li>');
-    });
-}
-function addToCart(artikelData) {
-    let artikel = artikelData.artikel;
-    let aantal = artikelData.aantal;
-    $('#artikelCart').append('<li><a href="#" data-identity="' + artikel.idartikel + '">' + artikel.naam + '</a> ' + artikel.prijs +'  '  + aantal + '</li>');
-}
 function removeFromCart(artikelId) {
     console.log('remove from list ' + artikelId);
-
-    $("#artikelCart a[data-identity=" + artikelId + "]").remove();
+    shoppingcart[artikelId] = null;
+    $("#tableBodyCheckOut tr[data-identity=" + artikelId + "]").remove();
+    
+    
 }
 
 function totalPrice(cart) {
@@ -102,10 +112,9 @@ function cartToJSON() {
             wagen[item.artikel.idartikel] = item.aantal;
         }
     }
-    return JSON.stringify(wagen
-        
-        
-    //    "image": uploadfiles.files[0]
+    return JSON.stringify(
+            wagen
+       
     );
 }
 function renderTabel(data) {
@@ -122,6 +131,17 @@ function addToTabel(besteldArtikel) {
 //console.log("artikel " + artikelData.idartikel);
 let artikel = besteldArtikel.artikel;
     let aantal = besteldArtikel.aantal;
-    $('#tableBody').append
-    ('<tr> <td><a href = "#" data-identity= "'+artikel.naam +'" >dump</td><td>' +artikel.naam +"</td><td>" +aantal +"</td><td>" +artikel.prijs +"</td>  </a></tr>");
+    $('#tableBodyCheckOut').append
+    ('<tr data-identity= "'+artikel.idartikel +'"> <td><a href = "#" data-identity= "'+artikel.idartikel +'" >dump</a></td><td>' +artikel.naam +"</td><td>" +aantal +"</td><td>" +artikel.prijs +"</td>  </tr>");
 }
+
+
+function getAnswer(vraag){
+    
+    return vraag + " weet ik niet.. ";
+}
+//<h5 href = "#" data-identity= "'+artikel.idartikel +'" >
+//<tr data-identity= "'+artikel.idartikel +'"> <td><a href = "#" data-identity= "'+artikel.idartikel +'" >dump</a></td><td>' +artikel.naam +"</td><td>" +aantal +"</td><td>" +artikel.prijs +"</td></tr>;
+//</h5>;
+
+//('<tr> <td><a href = "#" data-identity= "'+artikel.idartikel +'" >dump</a></td><td>' +artikel.naam +"</td><td>" +aantal +"</td><td>" +artikel.prijs +"</td>  </tr>");

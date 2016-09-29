@@ -15,69 +15,65 @@ and open the template in the editor.
 
     </head>
     <body>
-        <div class = "header">
-
-            <a href="inschrijven.html" > sign up </a>
-            <a href="inlogscherm.html" > sign in </a>
-            <div class = "inlogInfo">
+       <div class = "header">
+            <h1 id ="titel">Fantasy Friends</h1>
+            <a href="inschrijven.html" >  sign up </a>
+            <a href="inlogscherm.html" >  sign in </a>
+            <a href="index.html" >  home </a>
+            <div id = "inlogInfo">
                 <a id="ingelogdAls" > </a> <br>
-               
-                <a id= "shoppingcart" ></a>  
+                <a  href="checkOut.html" > check out </a> <br>
+            <a id="shoppingcart" >  </a>  
             </div>
 
-        </div> 
+        </div>  
         <div class ="pageContentWrapper">
 
 
-            <p id="shoppingcart" > </p> 
+<!--            <p id="shoppingcart" > </p> -->
             <button id="btnBuy">Buy</button>
             <ul id="artikelCart"></ul>
+            <div id = "checkoutTable" >
+              <table id="tableDataCheckOut" >
 
-              <table id="tableData" >
-
-            <!-- caption can be used to define a table title -->
-            <caption id = "tabelNaam" >Bestelling</caption>
-
-            <!-- thead shows at the top of the table and must come before tbody -->
+           <caption id = "tabelNaam" >Bestelling</caption>
+        
             <thead>
                 <tr>
-                    <td colspan="5">uw nieuwe vrienden</td>
+                    <td colspan="4">uw nieuwe vrienden</td>
                 </tr>
             </thead>
 
             
-            <tfoot id = "tableFooter">
+            <tfoot id = "tableFooterCheckOut">
                 
-                <tr><td colspan="3">van ruilen komt huilen</td></tr>
+<!--                <tr><td> </td><td colspan="3">van ruilen komt huilen</td></tr>-->
             </tfoot>
-
-            <!-- The main data for the table goes between tbody if you use thead or tfoot -->
-            <tbody id="tableBody">
+          
+            <tbody id="tableBodyCheckOut">
                 <tr>
                     <td></td>
                     <td>Naam</td>
                     <td>Aantal</td>
                     <td>Prijs</td>
                 </tr>
-
-               
-
               
             </tbody>
 
         </table>
-
+            </div>
         </div>
         <div class="footer">
-            doei
-            dag
-            watnu <br>
-            hoe
+            
+           <label>Babbel</label>
+                <input type="text" id="chat" name="chat" />
+                <h3 id = "antwoord" > blahblahblah </h3>
         </div>
 
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
 
         <script src="js/checkOut.js"></script>
+        <script src="js/beantwoorder.js"></script>
     </body>
 </html>
