@@ -24,7 +24,7 @@ public class AuthenticatedUserProducer {
     private KlantFacadeREST klantFacade;
     
     public AuthenticatedUserProducer(){
-        this.authenticatedUser = new Klant();//????
+        this.authenticatedUser = new Klant();
     }
 
     public void handleAuthenticationEvent(@Observes @AuthenticatedUser String username) {

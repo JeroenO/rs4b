@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>Home</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styles.css" />
 
@@ -34,7 +34,7 @@
             <h2>Choose your companion</h2><br>  <br>
 
             <ul id="artikelList"></ul>
-            <button id="btnAdd">Nieuw Artikel</button>
+            <button id="btnAdd" hidden>Nieuw Artikel</button>
         </div>
 
 
@@ -53,8 +53,8 @@
                 <input type="text" id="prijs" name="prijs" required/>
 
 
-                <button id="btnSave">Save</button>
-                <button id="btnDelete">Delete</button>
+                <button id="btnSave" hidden>Save</button>
+                <button id="btnDelete" hidden>Delete</button>
                 <div>
                     <button id="btnAddToCart" type = "button" >Voeg Toe aan Winkelwagen</button>
                     <button id="btnEmptyCart" type = "button" >C</button>
@@ -65,8 +65,10 @@
             </div>
 
             <div class="rightArea">
+              
                 <img id="pic" src= "" alt = "pic niet gevonden" height="300"/>
-                <input type="file" id="fileinput" accept="image/*"  />
+             
+                <input type="file" id="fileinput" accept="image/*" hidden />
                 <div id="gallery"></div>
 
                 <label>Notes:</label>
@@ -76,15 +78,15 @@
         </div>
         
         <div class="footer">
-            doei
-            dag
-            watnu <br>
-            hoe
+            
+            
+           
+            <small>  <a id = "contact" href = "mailto: friends@fantasy.com"> contact Friends </a> <br> <br>  &copy; your right 2016   </small>
         </div>
 
         
         
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-2.1.4.js"></script>
         <script src="js/main.js"></script>
         <script src="js/klantgegevens.js"></script>
         

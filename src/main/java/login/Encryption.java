@@ -7,9 +7,6 @@ package login;
 
 import java.security.SecureRandom;
 import java.util.Random;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import org.abstractj.kalium.NaCl;
 import org.abstractj.kalium.crypto.Password;
 import org.abstractj.kalium.encoders.Encoder;
@@ -23,21 +20,7 @@ import org.apache.commons.lang.ArrayUtils;
 public class Encryption {
     static Encoder hex = new Hex();
     static Password pw = new Password();
-    @PersistenceContext(unitName = "com.me_ws4_war_1.0-SNAPSHOTPU")
-    private static EntityManager em;
-    
-    public static void savePassword(String password, String usernameemail) {
-        
-        String encrypted = encryptPassword(password);
-        
-        
-        String qlString = "insert into klant ('password') value (':pw')";
-        Query q = em.createQuery(qlString).setParameter("pw", encrypted);
-        q.executeUpdate();
 
-    
-        
-    }
     
     
     public static String encryptPassword( String password) {
@@ -51,20 +34,19 @@ public class Encryption {
         System.out.println("encryption took ms  "+ duration/1000000);
         
         return encrypted;
-        
-       
-       
+           
     }
     
     public static boolean verifyPassword(String password, String inDB) {
+         //eerste deel dbhash is oorspronkelijk salt dus vergelijk 2e deel met getyptePW + het zout
+        // om mij nog  onbekende reden doet pw.verify dit niet goed zelf
+        
         String ongezouten = inDB.substring(32);
         String zout = inDB.substring(0, 32);
         byte[] hashedPassword = hex.decode(ongezouten);
-        
-        //eerste deel dbhash is oorspronkelijk salt dus vergelijk 2e deel met getyptePW + het zout
-        // om mij nog  onbekende reden doet pw.verify dit niet goed zelf
         byte[] vleugje = hex.decode(zout);
         byte[] ingevoerd = (byte[])ArrayUtils.addAll(vleugje, password.getBytes());
+        
         return pw.verify( hashedPassword , ingevoerd);
         
         

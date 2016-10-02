@@ -2,6 +2,11 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
 }
+small {
+    float: right;
+    margin:20px;
+    font-size: 10px;
+}
 html{
     position:relative; 
     min-height: 100%;
@@ -13,7 +18,8 @@ html,body{
     /*    border:solid 1px #CCCCCC;*/
     background-color: blue;
     color: purple;
-    background-image: url("http://jeroenboschvoorbeginners.nl/wp-content/uploads/2015/07/Tuin-der-Lusten-detail-stichting.jpg") ;
+/*    background-image: url("http://jeroenboschvoorbeginners.nl/wp-content/uploads/2015/07/Tuin-der-Lusten-detail-stichting.jpg") ;*/
+     background-image: url("https://localhost:8181/ws4/pics/Tuin-der-Lusten-detail-stichting.jpg");
 }
 .pageContentWrapper{
     margin-top: 100px;
@@ -71,11 +77,19 @@ html,body{
 }
 
 .rightArea {
+    position: relative;
+    top: 20px;
+    bottom: 10px;
+    left: 900px;
+    overflow-y: scroll;
+    width:360px;
+}
+.rightArea2 {
     position: absolute;
     top: 20px;
     bottom: 10px;
-    left:900px;
-    overflow-y: scroll;
+    left: 900px;
+/*    overflow-y: scroll;*/
     width:360px;
 }
 
@@ -163,7 +177,7 @@ input:required:valid {
     background-color: whitesmoke;
     width:600px;
     border: 3px solid pink;
-    opacity: 0.7;
+    opacity: 0.9;
     
    
 }
@@ -257,7 +271,7 @@ tr a:hover {
     
     text-align: center;
     background-color: lightskyblue;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 #inschrijfForm label {
@@ -303,10 +317,23 @@ tr a:hover {
     text-decoration: none;
     padding:  10px;
 }
+.footer a {
+    text-decoration: none;
+    
+}
+#contact {
+    text-decoration: none;
+    color : gold;
+    font-size: 14px;
+    text-align: center;
+}
 #titel {
     font-size: xx-large;
     font-family: fantasy;
     color: gold;
     text-align: center;
     
+}
+#buttonBuy {
+    text-align: center;
 }

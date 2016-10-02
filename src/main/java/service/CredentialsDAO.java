@@ -29,23 +29,12 @@ public class CredentialsDAO extends AbstractFacade<Credentials>{
         super(Credentials.class);
     }
     
-    public void savePassword(String password, Integer klantid) {
-        
-        String encrypted = Encryption.encryptPassword(password);
-        
-        
-        String qlString = "insert into klant ('password') value (':pw')";
-        Query q = em.createQuery(qlString).setParameter("pw", encrypted);
-        q.executeUpdate();
 
-    
-        
-    }
     public void createNewCredentials(String emailusername, String password) {
         Credentials cred = new Credentials();
         cred.setUsername(emailusername);
-        System.out.println("EEEEEemailAAAAA = "  + emailusername);
-        System.out.println("AAAAAAAAAAAA = "  + password);
+        System.out.println("email = "  + emailusername);
+        System.out.println("password "  + password);
         cred.setPassword(Encryption.encryptPassword(password));
         create(cred);
         
@@ -62,12 +51,12 @@ public class CredentialsDAO extends AbstractFacade<Credentials>{
 
     @Override
     protected EntityManager getEntityManager() {
-        System.out.println("niets hier abstract  " + em);
-    //   return em;
+        System.out.println("niets hier abstract  credentialsdao" + em);
+    
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.me_ws4_war_1.0-SNAPSHOTPU");
     EntityManager ecm = emf.createEntityManager(); 
    // em = ecm;
-    System.out.println("niets hier abstract  " + ecm);
+    System.out.println("niets hier abstract credentialsdao " + ecm);
     return ecm;
     }
 }

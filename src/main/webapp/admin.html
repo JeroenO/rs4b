@@ -12,7 +12,15 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <div>TODO write content</div>
+        
+         <form id ="inlogForm" >    
+        <label>username</label>
+        <input type="text" id="username" name="username" required><br>
+           
+        
+        <button id="btnLogin">login</button>
+        </form>
+        <div>verboden toegang voor onbevoegden</div>
         <div>
         <table id="tableData" >
             <caption id = "tabelNaam" >Klanten</caption>
@@ -46,7 +54,7 @@ and open the template in the editor.
             
         </table>
         </div>
-        <div class="rightArea">
+        <div class="rightArea2">
         <table id="tableDataBesteldeArtikelen" >
             <caption id = "tabelNaamBesteldeArtikelen" >artikelen</caption>
             <thead>
@@ -62,7 +70,7 @@ and open the template in the editor.
         </table>
         </div>
         <label id ="klantId">...</label>
-        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="js/jquery-2.1.4.js"></script>
         <script src="js/admin.js"></script>
     </body>
 </html>

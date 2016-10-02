@@ -23,6 +23,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import login.Role;
+
 
 
 
@@ -47,6 +49,7 @@ public class ArtikelFacadeREST extends AbstractFacade<Artikel> {
     }
 
     @POST
+    @Secured({Role.ROLE_1})
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Artikel create(Artikel entity) {
@@ -72,6 +75,7 @@ public class ArtikelFacadeREST extends AbstractFacade<Artikel> {
     }
 
     @PUT
+    @Secured({Role.ROLE_1})
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Artikel entity) {
@@ -79,7 +83,7 @@ public class ArtikelFacadeREST extends AbstractFacade<Artikel> {
     }
 
     @DELETE
-    @Secured
+    @Secured({Role.ROLE_1})
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));

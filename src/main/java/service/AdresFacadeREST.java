@@ -45,25 +45,7 @@ public class AdresFacadeREST extends AbstractFacade<Adres> {
     @Path("{password}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void saveKlantAdres(Klant nieuweInschrijving, @PathParam("password") String password) {
-//        Klant nieuweKlant = nieuweInschrijving.extractKlant();
-//        Adres adres = nieuweInschrijving.extractAdres();
-//        List<Adres> bestaandeAdressen = findByPostcodeEnHuisnr(adres);
-//        if (!bestaandeAdressen.isEmpty()) {
-//            
-//            adres = bestaandeAdressen.get(0);
-//         //   nieuweKlant.getAdresCollection().add(adres);
-//            adres.getKlantCollection().add(nieuweKlant);
-//            super.edit(adres);
-//
-//        } else {
-//          //  nieuweKlant.getAdresCollection().add(adres);
-//            adres.getKlantCollection().add(nieuweKlant);
-//            create(adres);
-//        }
 
-
-       // System.out.println("QWERTY SSSSSSSSSSSSS" + nieuweInschrijving.getPassword());
-       // cdao.createNewCredentials(nieuweInschrijving.getEmail(), nieuweInschrijving.getPassword() );
         em.persist(nieuweInschrijving);
        cdao.createNewCredentials(nieuweInschrijving.getEmail(), password );
     }

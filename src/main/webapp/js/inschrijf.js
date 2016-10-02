@@ -9,8 +9,7 @@ $('#inschrijfForm').submit(function() {
 	
 	addKlant();
         window.location.replace("inlogscherm.html");
-      //  addAdres();
-	return false;
+     	return false;
 });
 function addKlant() {
 	console.log('addKlant');
@@ -23,10 +22,7 @@ function addKlant() {
                 
 		success: function(data, textStatus, jqXHR){
 			alert('klant created successfully'  );
-                        
-//			$('#btnDelete').show();
-		//	$('#artikelId').val(data.idartikel);
-                //        addToList(data);
+                
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert('addklant error: ' + textStatus);
@@ -44,19 +40,12 @@ function inschrijfFormToJSON() {
     };
 	
 	return JSON.stringify({
-//		
-           
+          
 		"voornaam": $('#voornaam').val(), 
 		"achternaam": $('#achternaam').val(),
 		"email": $('#email').val(),
                 "adresCollection": [adres]
             
-//                
-//                "straat": $('#straatnaam').val(),
-//                "huisnr": $('#huisnummer').val(),
-//                "postcode": $('#postcode').val(),
-//                "plaatsnaam": $('#plaatsnaam').val(),
-                
-//                "password": $('#password2').val()
+
 		});
 }

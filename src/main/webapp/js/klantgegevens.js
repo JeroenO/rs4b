@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 //let shoppingcart = [];
-document.getElementById("ingelogdAls").innerHTML = "hallo " + extractUserName(token);
+document.getElementById("ingelogdAls").innerHTML = "hallo " + extractUserRoepNaam(token);
 
 //
 //$('#btnCheckOut').click(function () {
@@ -25,11 +25,12 @@ document.getElementById("ingelogdAls").innerHTML = "hallo " + extractUserName(to
 //});
 
 
-function extractUserName(teken) {
+function extractUserRoepNaam(teken) {
     var tokenwoorden = teken.split(" ");
     var tokenmail = tokenwoorden[tokenwoorden.length - 1];
     return tokenmail.split("@")[0];
 }
+
 
 function fillCart(aantal) {
     console.log('fillCart');

@@ -6,7 +6,6 @@
 package login;
 
 import entities.Credentials;
-import entities.Klant;
 import java.security.SecureRandom;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -14,10 +13,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import static login.Role.ROLE_1;
 
 /**
  *
@@ -28,15 +30,31 @@ import javax.ws.rs.core.MediaType;
 public class Inlogger {
 
     String token = "12345";
-    Credentials cred;
-//    String password = "pw";
-//    String username = "user";
-//     String savedEncrypt = "";   
+    Credentials cred ;
+ 
     @PersistenceContext(unitName = "com.me_ws4_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
     public Inlogger() {
 
+    }
+    
+    @GET
+    @Secured({ROLE_1})      // niet zeker of goed id maar we gaan het proberen...
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("{userEmail}")
+     @Produces({MediaType.APPLICATION_JSON})
+    public InlogGegevens logInAs(@PathParam("userEmail") String klantEmail){
+        InlogGegevens klantLogin = new InlogGegevens();
+        klantLogin.setUsername(klantEmail);
+        
+        Query q = em.createNamedQuery("Credentials.findByUsername").setParameter("username", klantEmail);
+        List<Credentials> credens = (List<Credentials>) q.getResultList();
+        if (!credens.isEmpty()) {
+            cred = credens.get(0);
+        }
+        return verwijderEnVoegTokenToe(klantLogin);
+                
     }
 
     @POST
@@ -57,6 +75,7 @@ public class Inlogger {
         createToken(inlog.getUsername());
         inlog.setToken(this.token);
         cred.setToken(token);
+      
         em.merge(cred); // save token in db
 
         return inlog;
@@ -65,6 +84,7 @@ public class Inlogger {
     private InlogGegevens valseGegevens(InlogGegevens inlog) {
         inlog.setPassword("");
         inlog.setToken("invalidCredentials");
+        inlog.setUsername("invalidCredentials");
         return inlog;
     }
 

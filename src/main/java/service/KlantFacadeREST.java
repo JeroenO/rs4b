@@ -35,6 +35,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import login.AuthenticatedUser;
+import static login.Role.ROLE_1;
 import login.Secured;
 import wrappers.AdresZonderCollection;
 
@@ -140,10 +141,14 @@ Map<Integer, Integer> myMap =  new Gson().fromJson(inkomend, type);
 
     @PUT
     @Path("{id}")
+    @Secured
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Klant entity) {
         System.out.println("klant = " + entity + entity.getVoornaam());
-        super.edit(entity);
+        if (id.equals(ingelogdeKlant.getIdklant()) ) { // enkel eigen gegevens mogen gewijzigd worden
+            System.out.println("klant = ingelogdeklant" );
+            super.edit(entity);
+        }
     }
 
     @DELETE
@@ -151,7 +156,7 @@ Map<Integer, Integer> myMap =  new Gson().fromJson(inkomend, type);
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
-
+    @Secured({ROLE_1})
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -181,7 +186,7 @@ Map<Integer, Integer> myMap =  new Gson().fromJson(inkomend, type);
         
         return leegAdres;
     }
-
+    @Secured({ROLE_1})
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

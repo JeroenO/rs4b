@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 const rootURL = "https://localhost:8181/ws4/webresources/";
+const inlogURL = "https://localhost:8181/ws4/webresources/login";
 
 let currentKlant;
 let currentAdressen;
 let currentBestellingen;
+let token = sessionStorage.getItem('token');
 
 findAllKlanten();
 
@@ -30,12 +32,15 @@ function findById(id) {
         type: 'GET',
         url: rootURL + 'Klant/' + id,
         dataType: "json",
+        beforeSend: function (request) {
+            request.setRequestHeader("Authorization", "Bearer " + token);},
         success: function (data) {
             //	$('#btnDelete').show();
             console.log('findById success: ' + data.adresCollection[0].postcode);
             currentKlant = data;
             currentAdressen = data.adresCollection;
             renderKlantDetails(currentAdressen);
+            $('#username').val(currentKlant.email);
           
         }
     });
@@ -45,10 +50,13 @@ function findById(id) {
 
 function findAllKlanten() {
     console.log('findAllKlanten');
+    
     $.ajax({
         type: 'GET',
         url: rootURL + "Klant",
         dataType: "json", // data type of response
+        beforeSend: function (request) {
+            request.setRequestHeader("Authorization", "Bearer " + token);},
         success: renderTabel
     });
 }
@@ -144,4 +152,35 @@ console.log("lengte data " + data.size);
 function addToTabel3(besteldeArtikelen) {
 console.log("bestelling...  " + besteldeArtikelen.besteldatum);
     $('#tableBodyBesteldeArtikelen').append('<tr> <td><a href = "#" data-identity= "'+besteldeArtikelen.idbestelling +'" >..</td><td>' +besteldeArtikelen.aantal +"</td> <td>" +besteldeArtikelen.artikel.naam +"</td><td>" +besteldeArtikelen.artikel.prijs +"</td></a></tr>");
+}
+
+$('#btnLogin').click(function() {
+	superUserLogin();
+	return false;        
+});
+function superUserLogin() {
+	console.log('logging in getting token' + $('#username').val());
+	$.ajax({
+		type: 'GET',
+		contentType: 'application/json',
+		url: rootURL + "login/" +  $('#username').val() ,
+                
+		 beforeSend: function (request) {
+            request.setRequestHeader("Authorization", "Bearer " + token);
+        },
+                
+		success: function(data, textStatus, jqXHR){
+			alert('logged in  ' + data.username + " " + data.token);
+                        saveToken(data.token);
+                        window.location.replace("personalia.html");
+                      
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('trying to play God: ' + errorThrown );
+		}
+	});
+}
+
+function saveToken(token) {
+    sessionStorage.setItem('token', token);
 }

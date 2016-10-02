@@ -15,7 +15,7 @@ $('#btnWijzig').click(function () {
 });
 $('#btnUpdate').click(function () {
     console.log("update");
-    updateKlant();
+    updateKlant(persoonsFormToJSON());
     return false;
 });
 
@@ -37,7 +37,7 @@ $('#btnSaveAdres').click(function () {
         }
         else {
             ingelogdeKlant.adresCollection.push(adres);
-            updateKlantMetAdres();
+            updateKlant(JSON.stringify(ingelogdeKlant));
         }
     
     return false;
@@ -74,20 +74,23 @@ $('#chat').bind('keypress', function (e){
 });
 
 
-function updateKlant() {
+function updateKlant(gegevens) {
     console.log('updateKlant');
     $.ajax({
         type: 'PUT',
         contentType: 'application/json',
         url: srootURL + 'Klant/' + ingelogdeKlant.idklant, //$('#klantId').val(),  //potentieel gevaarlijk?
         dataType: "json",
-        data: persoonsFormToJSON(),
+        data: gegevens,
+        beforeSend: function (request) {
+            request.setRequestHeader("Authorization", "Bearer " + token);
+        },
         success: function (data, textStatus, jqXHR) {
-            console.log('form ' + persoonsFormToJSON());
+           
             alert('Klant updated successfully');
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert('updateKlant error: ' + textStatus);
+            alert('updateKlant error: ' + errorThrown);
         }
     });
 }
@@ -107,7 +110,7 @@ function saveAdres() {
 }
 function bestaatAl(adres) {
     console.log("vergelijken vervangofvernieuw " + adres + adres.idadres );
-    console.log("bestaat oa " + ingelogdeKlant.adresCollection[0].idadres);
+  //  console.log("bestaat oa " + ingelogdeKlant.adresCollection[0].idadres);
     for (let bestaand of ingelogdeKlant.adresCollection){
         console.log("in collectie " + bestaand.idadres);
         if (+(adres.idadres) === +(bestaand.idadres) && +(adres.idadres) !== +"" ) {
@@ -121,23 +124,23 @@ function bestaatAl(adres) {
     
    
 }
-function updateKlantMetAdres() {
-    console.log('updateKlant');
-    $.ajax({
-        type: 'PUT',
-        contentType: 'application/json',
-        url: srootURL + 'Klant/' + ingelogdeKlant.idklant, //$('#klantId').val(),  //potentieel gevaarlijk?
-        dataType: "json",
-        data: JSON.stringify(ingelogdeKlant),
-        success: function (data, textStatus, jqXHR) {
-            console.log('form ' + persoonsFormToJSON());
-            alert('Klant updated successfully');
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('updateKlant error: ' + textStatus);
-        }
-    });
-}
+//function updateKlantMetAdres() {
+//    console.log('updateKlant');
+//    $.ajax({
+//        type: 'PUT',
+//        contentType: 'application/json',
+//        url: srootURL + 'Klant/' + ingelogdeKlant.idklant, //$('#klantId').val(),  //potentieel gevaarlijk?
+//        dataType: "json",
+//        data: JSON.stringify(ingelogdeKlant),
+//        success: function (data, textStatus, jqXHR) {
+//            console.log('form ' + persoonsFormToJSON());
+//            alert('Klant updated successfully');
+//        },
+//        error: function (jqXHR, textStatus, errorThrown) {
+//            alert('updateKlant error: ' + textStatus);
+//        }
+//    });
+//}
 function updateAdres(adres) {
     console.log('updateAdres');
     $.ajax({
@@ -220,7 +223,8 @@ function persoonsFormToJSON() {
         "idklant": ingelogdeKlant.idklant, // id niet te wijzigen en email vooralsnog ook niet
         "voornaam": $('#voornaam').val(),
         "achternaam": $('#achternaam').val(),
-        "email": ingelogdeKlant.email
+        "email": ingelogdeKlant.email,
+        "adresCollection" : ingelogdeKlant.adresCollection
 
     });
 }

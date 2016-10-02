@@ -12,8 +12,12 @@ if (!shoppingcart) {
 else {
     document.getElementById("shoppingcart").innerHTML = "in cart " + totalPrice(shoppingcart);
 }
+
 findAll();
+showButtonsIndex();
+
 $('#pic').attr('src', 'pics/' + 'fairy125.gif');
+
 $(window).on("beforeunload", function() {
     sessionStorage.setItem('shoppingcart' , JSON.stringify(shoppingcart));
     console.log('sessionstorage  ' + JSON.parse(sessionStorage.getItem('shoppingcart')));
@@ -103,7 +107,9 @@ function addArtikel() {
         url: rootURL,
         dataType: "json",
         data: formToJSON(),
-
+        beforeSend: function (request) {
+            request.setRequestHeader("Authorization", "Bearer " + token);
+        },
         success: function (data, textStatus, jqXHR) {
             alert('Artikel created successfully' + data.idartikel);
 //			$('#btnDelete').show();
@@ -111,7 +117,7 @@ function addArtikel() {
             addToList(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert('addArtikel error: ' + textStatus);
+            alert('addArtikel error: ' + errorThrown);
         }
     });
 }
@@ -124,11 +130,14 @@ function updateArtikel() {
         url: rootURL + '/' + $('#artikelId').val(),
         dataType: "json",
         data: formToJSON(),
+         beforeSend: function (request) {
+            request.setRequestHeader("Authorization", "Bearer " + token);
+        },
         success: function (data, textStatus, jqXHR) {
             alert('Artikel updated successfully');
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert('updateArtikel error: ' + textStatus);
+            alert('updateArtikel error: ' + errorThrown);
         }
     });
 }
@@ -252,8 +261,23 @@ function uploadFile(file) {
         }
     });
 }
-
-
+function showButtonsIndex() {
+    let username = extractUserName(sessionStorage.getItem('token'));
+    console.log("showing button for "+ username);
+    if (username === "ra@ra" || username === "evil@hacker") {
+        $('#btnDelete').show();
+        $('#btnSave').show();
+        $('#btnAdd').show();
+        $('#fileinput').show();
+    }
+}
+function extractUserName(teken) {
+    if (teken){
+    var tokenwoorden = teken.split(" ");
+    var tokenmail = tokenwoorden[tokenwoorden.length - 1];
+    return tokenmail;
+}
+}
 
 
 //$('#btnCheckOut').click(function () {
